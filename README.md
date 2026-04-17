@@ -1,56 +1,87 @@
-# PhishGuard AI
+# 🛡️ PhishGuard AI  
+### AI-Powered Phishing Detection using Text, URL & Screenshot Analysis  
 
-PhishGuard AI is a phishing detection system developed for hackathon implementation round submission.
+🚀 PhishGuard AI is a cybersecurity solution designed to detect phishing threats using multi-layer analysis of email text, URLs, and screenshots with OCR.
 
-## Features
-- Email/Text phishing detection
-- URL phishing detection
-- Screenshot/image phishing detection using OCR
-- Final risk score and label
-- Explainable output with reasons
+---
 
-## Project Structure
-- app.py -> main Flask application
-- detector.py -> phishing scoring logic
-- ocr_module.py -> screenshot OCR module
-- templates/index.html -> UI template
-- requirements.txt -> dependencies
+## 🔍 Overview
+PhishGuard AI identifies phishing attacks in real-time using:
+- 📧 Text-based phishing detection  
+- 🔗 URL risk analysis  
+- 🖼️ Screenshot OCR-based scam detection  
+- 🧠 Intelligent scoring with explainable results  
 
-## How to Run
+---
 
-### 1. Install Python packages
-pip install -r requirements.txt
+## ⚙️ Features
+- Multi-input detection (Text + URL + Image)  
+- AI-inspired scoring mechanism  
+- Real-time threat analysis  
+- Clear threat explanations  
+- Modern UI design  
+- Lightweight and fast  
 
-### 2. Install Tesseract OCR
-Windows:
-- Download and install Tesseract OCR
-- If needed, set path in ocr_module.py
+---
 
-### 3. Run the app
-python app.py
+## 🧠 System Architecture
+User Input → (Text Analyzer + URL Analyzer + OCR Analyzer) → Scoring Engine → Final Risk Output  
 
-### 4. Open in browser
-http://127.0.0.1:5000
+---
 
-## Sample Inputs
-### Phishing Text
-Urgent! Your bank account has been suspended. Click here immediately to verify your identity and reset your password.
+## 🧪 Detection Logic
+- Keyword-based phishing detection  
+- URL analysis (domain, HTTPS, suspicious patterns)  
+- OCR extraction from screenshots  
+- Weighted + max-risk scoring system  
 
-### Safe Text
-Hello Arnav, your project meeting is scheduled for tomorrow at 10 AM. Please find the agenda attached.
+---
 
-### Suspicious URL
-http://paypal-secure-login-update.bit.ly/verify-account
+## 📊 Output Example
+- Final Risk Score: 78%  
+- Label: Phishing  
+- Confidence: High  
+- Explanation: Suspicious keywords, fake domain, brand spoofing  
 
-## Core Logic
-The system checks:
-- suspicious keywords
-- urgency phrases
-- credential stealing language
-- risky URL structures
-- OCR text extracted from screenshots
+---
 
-Then it combines all scores into a final verdict:
-- Safe
-- Suspicious
-- Phishing
+## 🛠️ Tech Stack
+- Python  
+- Flask  
+- HTML/CSS  
+- OCR (Tesseract / Pillow)  
+- Rule-based + heuristic AI  
+
+---
+
+## 🚀 How to Run
+git clone https://github.com/arnavpasricha137/PhishGuard-AI.git  
+cd PhishGuard-AI  
+python -m venv venv  
+venv\Scripts\activate  
+pip install -r requirements.txt  
+python app.py  
+
+Open: http://127.0.0.1:5000/
+
+---
+
+## 📸 Demo
+(Add screenshot here → demo.png)
+
+---
+
+## 🎯 Use Cases
+- Email phishing detection  
+- Fake website detection  
+- Screenshot scam analysis  
+- Cybersecurity awareness  
+
+---
+
+## 🔐 Future Enhancements
+- ML-based detection  
+- Browser extension  
+- Real-time API  
+- Mobile app  
+
