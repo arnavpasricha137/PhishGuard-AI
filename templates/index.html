@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>PhishGuard AI</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background:
+                radial-gradient(circle at top left, rgba(34, 197, 94, 0.08), transparent 25%),
+                radial-gradient(circle at top right, rgba(6, 182, 212, 0.08), transparent 25%),
+                linear-gradient(135deg, #071225, #0b1730 45%, #08101f);
+            color: #e5eefc;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1250px;
+            margin: 32px auto;
+            padding: 18px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(22, 34, 57, 0.95), rgba(18, 134, 125, 0.88));
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 26px;
+            padding: 34px 36px;
+            margin-bottom: 28px;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+        }
+
+        .hero h1 {
+            margin: 0 0 10px;
+            font-size: 50px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            margin: 0;
+            font-size: 20px;
+            color: #d6ebf7;
+            line-height: 1.5;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 24px;
+        }
+
+        .card {
+            background: rgba(8, 18, 38, 0.95);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 14px 38px rgba(0,0,0,0.25);
+        }
+
+        .card h2 {
+            margin: 0 0 22px;
+            font-size: 24px;
+            color: #ffffff;
+        }
+
+        .section-block {
+            margin-bottom: 22px;
+            padding: 18px;
+            border-radius: 18px;
+            background: rgba(19, 31, 57, 0.75);
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .section-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .section-top label {
+            font-size: 22px;
+            font-weight: 700;
+            color: #f3f7ff;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 12px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            background: rgba(148, 163, 184, 0.16);
+            color: #cbd5e1;
+        }
+
+        .status-pill.ready {
+            background: rgba(34, 197, 94, 0.16);
+            color: #86efac;
+        }
+
+        textarea,
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            border: 1px solid rgba(148, 163, 184, 0.22);
+            border-radius: 16px;
+            background: #1a2743;
+            color: #eef6ff;
+            padding: 14px 15px;
+            outline: none;
+            transition: 0.2s ease;
+            font-size: 15px;
+        }
+
+        textarea:focus,
+        input[type="text"]:focus,
+        input[type="file"]:focus {
+            border-color: rgba(34, 197, 94, 0.65);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.12);
+        }
+
+        textarea {
+            min-height: 170px;
+            resize: vertical;
+        }
+
+        .helper {
+            margin-top: 8px;
+            font-size: 13px;
+            color: #93a6c7;
+        }
+
+        .submit-btn {
+            width: 100%;
+            margin-top: 6px;
+            border: none;
+            border-radius: 18px;
+            padding: 16px;
+            font-size: 20px;
+            font-weight: 800;
+            color: white;
+            cursor: pointer;
+            background: linear-gradient(135deg, #22c55e, #06b6d4);
+            box-shadow: 0 12px 28px rgba(6, 182, 212, 0.22);
+            transition: transform 0.15s ease, opacity 0.15s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-1px);
+            opacity: 0.97;
+        }
+
+        .highlights-list {
+            margin: 0;
+            padding-left: 22px;
+            color: #d8e6fb;
+            line-height: 1.9;
+            font-size: 18px;
+        }
+
+        .highlight-box {
+            margin-top: 22px;
+            padding: 18px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(6, 182, 212, 0.08));
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .highlight-box h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: #bfd5ef;
+            line-height: 1.7;
+        }
+
+        .result-wrapper {
+            margin-top: 28px;
+            background: rgba(8, 18, 38, 0.96);
+            border-radius: 26px;
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 28px;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.28);
+        }
+
+        .top-result {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 0.4px;
+        }
+
+        .safe {
+            background: rgba(34, 197, 94, 0.16);
+            color: #86efac;
+        }
+
+        .suspicious {
+            background: rgba(250, 204, 21, 0.16);
+            color: #fde68a;
+        }
+
+        .phishing {
+            background: rgba(239, 68, 68, 0.16);
+            color: #fca5a5;
+        }
+
+        .score-box h2 {
+            margin: 10px 0 6px;
+            font-size: 34px;
+            color: #ffffff;
+        }
+
+        .score-box p {
+            margin: 0;
+            color: #a8c0de;
+            font-size: 15px;
+        }
+
+        .confidence-bar {
+            width: 100%;
+            height: 18px;
+            background: #15213a;
+            border-radius: 999px;
+            overflow: hidden;
+            margin: 18px 0 8px;
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #22c55e 0%, #eab308 55%, #ef4444 100%);
+        }
+
+        .confidence-text {
+            margin-bottom: 22px;
+            color: #c3d9f2;
+            font-size: 14px;
+        }
+
+        .subheading {
+            margin: 22px 0 12px;
+            font-size: 20px;
+            color: #8bd8ff;
+        }
+
+        .reason-list {
+            margin: 0;
+            padding-left: 22px;
+            line-height: 1.8;
+            color: #dbe9fb;
+        }
+
+        .analysis-grid {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .analysis-card {
+            background: linear-gradient(180deg, rgba(22, 35, 61, 0.98), rgba(14, 25, 44, 0.98));
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 18px;
+        }
+
+        .analysis-card h4 {
+            margin: 0 0 12px;
+            font-size: 19px;
+            color: #ffffff;
+        }
+
+        .meta {
+            margin: 6px 0;
+            color: #c7dbf4;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .mini-status {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: rgba(34, 197, 94, 0.14);
+            color: #86efac;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .ocr-box {
+            margin-top: 12px;
+            background: #15213a;
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 16px;
+            color: #deebfb;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            max-height: 260px;
+            overflow-y: auto;
+        }
+
+        .footer-note {
+            margin-top: 20px;
+            padding: 14px 16px;
+            border-radius: 14px;
+            background: rgba(6, 182, 212, 0.08);
+            border: 1px solid rgba(6, 182, 212, 0.16);
+            color: #c6eefd;
+            font-size: 14px;
+        }
+
+        @media (max-width: 1000px) {
+            .grid,
+            .analysis-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 14px;
+            }
+
+            .hero {
+                padding: 24px 22px;
+            }
+
+            .card,
+            .result-wrapper {
+                padding: 20px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>PhishGuard AI</h1>
+            <p>AI-Powered Phishing Detection using Text, URL, and Screenshot Analysis</p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h2>Analyze Threat Input</h2>
+
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="section-block">
+                        <div class="section-top">
+                            <label for="email_text">Email / Message Text</label>
+                            <span class="status-pill {% if result and result.email_analysis.status == 'Analyzed' %}ready{% endif %}">
+                                {% if result and result.email_analysis.status == 'Analyzed' %}
+                                    Analyzed
+                                {% else %}
+                                    Waiting
+                                {% endif %}
+                            </span>
+                        </div>
+                        <textarea name="email_text" placeholder="Paste suspicious email or message text here..."></textarea>
+                        <div class="helper">Checks social engineering cues, urgency, credential theft phrases, and malicious tone.</div>
+                    </div>
+
+                    <div class="section-block">
+                        <div class="section-top">
+                            <label for="url">URL</label>
+                            <span class="status-pill {% if result and result.url_analysis.status == 'Analyzed' %}ready{% endif %}">
+                                {% if result and result.url_analysis.status == 'Analyzed' %}
+                                    Analyzed
+                                {% else %}
+                                    Waiting
+                                {% endif %}
+                            </span>
+                        </div>
+                        <input type="text" name="url" placeholder="Enter suspicious URL here..." />
+                        <div class="helper">Evaluates URL length, spoofing patterns, redirects, shorteners, and risky structures.</div>
+                    </div>
+
+                    <div class="section-block">
+                        <div class="section-top">
+                            <label for="image_file">Upload Screenshot / Image</label>
+                            <span class="status-pill {% if result and result.image_analysis.status == 'Analyzed' %}ready{% endif %}">
+                                {% if result and result.image_analysis.status == 'Analyzed' %}
+                                    Analyzed
+                                {% else %}
+                                    Waiting
+                                {% endif %}
+                            </span>
+                        </div>
+                        <input type="file" name="image_file" accept=".png,.jpg,.jpeg" />
+                        <div class="helper">OCR extracts text from screenshots to detect scam messages even when content is image-based.</div>
+                    </div>
+
+                    <button class="submit-btn" type="submit">Analyze Threat</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h2>System Highlights</h2>
+                <ul class="highlights-list">
+                    <li>Multi-input phishing detection engine</li>
+                    <li>Text-based social engineering analysis</li>
+                    <li>URL risk scoring with phishing heuristics</li>
+                    <li>Screenshot OCR support for image-based scams</li>
+                    <li>Explainable verdict with clear reasons</li>
+                    <li>Weighted final scoring for improved decisions</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h3>Why this stands out</h3>
+                    <p>
+                        PhishGuard AI does not rely on a single check. It analyzes different input modes,
+                        combines their signals, and returns an interpretable result that users can understand.
+                    </p>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>Detection Pipeline</h3>
+                    <p>
+                        Input → Heuristic Analysis → Risk Scoring → Signal Combination → Final Verdict
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        {% if result %}
+        <div class="result-wrapper">
+            {% set label_class = 'safe' %}
+            {% if result.final_label == 'Suspicious' %}
+                {% set label_class = 'suspicious' %}
+            {% elif result.final_label == 'Phishing' %}
+                {% set label_class = 'phishing' %}
+            {% endif %}
+
+            <div class="top-result">
+                <div class="score-box">
+                    <span class="badge {{ label_class }}">{{ result.final_label }}</span>
+                    <h2>Final Risk Score: {{ result.final_score }}%</h2>
+                    <p>Combined outcome generated from text, URL, and OCR-based threat signals.</p>
+                </div>
+            </div>
+
+            <div class="confidence-bar">
+                <div class="confidence-fill" style="width: {{ result.confidence }}%;"></div>
+            </div>
+            <div class="confidence-text">Confidence Level: {{ result.confidence }}%</div>
+
+            <h3 class="subheading">Threat Explanation</h3>
+            <ul class="reason-list">
+                {% for reason in result.all_reasons %}
+                    <li>{{ reason }}</li>
+                {% endfor %}
+            </ul>
+
+            <h3 class="subheading">Input Analysis Summary</h3>
+            <div class="analysis-grid">
+                <div class="analysis-card">
+                    <h4>Email / Text Analysis</h4>
+                    <div class="meta"><strong>Label:</strong> {{ result.email_analysis.label }}</div>
+                    <div class="meta"><strong>Score:</strong> {{ result.email_analysis.score }}%</div>
+                    <div class="meta"><strong>Source:</strong> {{ result.email_analysis.source }}</div>
+                    <span class="mini-status">{{ result.email_analysis.status }}</span>
+                </div>
+
+                <div class="analysis-card">
+                    <h4>URL Analysis</h4>
+                    <div class="meta"><strong>Label:</strong> {{ result.url_analysis.label }}</div>
+                    <div class="meta"><strong>Score:</strong> {{ result.url_analysis.score }}%</div>
+                    <div class="meta"><strong>Source:</strong> {{ result.url_analysis.source }}</div>
+                    <span class="mini-status">{{ result.url_analysis.status }}</span>
+                </div>
+
+                <div class="analysis-card">
+                    <h4>Screenshot / OCR Analysis</h4>
+                    <div class="meta"><strong>Label:</strong> {{ result.image_analysis.label }}</div>
+                    <div class="meta"><strong>Score:</strong> {{ result.image_analysis.score }}%</div>
+                    <div class="meta"><strong>Source:</strong> {{ result.image_analysis.source }}</div>
+                    <span class="mini-status">{{ result.image_analysis.status }}</span>
+                </div>
+            </div>
+
+            {% if result.extracted_text %}
+                <h3 class="subheading">Extracted Text from Screenshot</h3>
+                <div class="ocr-box">{{ result.extracted_text }}</div>
+            {% endif %}
+
+            <div class="footer-note">
+                This result is generated using heuristic and rule-based phishing detection logic with weighted signal combination.
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
