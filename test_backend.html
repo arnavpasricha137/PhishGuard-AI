@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test PhishGuard Backend</title>
+</head>
+<body>
+    <h1>PhishGuard Backend Connection Test</h1>
+    <button onclick="testBackend()">Test Connection</button>
+    <pre id="result"></pre>
+
+    <script>
+        async function testBackend() {
+            const resultEl = document.getElementById('result');
+            resultEl.textContent = 'Testing...';
+            
+            try {
+                const response = await fetch('http://localhost:8000/health');
+                const data = await response.json();
+                resultEl.textContent = 'SUCCESS!\n' + JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultEl.textContent = 'ERROR: ' + error.message;
+            }
+        }
+        
+        // Auto-test on load
+        window.onload = testBackend;
+    </script>
+</body>
+</html>

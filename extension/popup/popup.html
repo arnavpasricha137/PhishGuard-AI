@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhishGuard AI</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <div class="popup-header">
+      <div class="logo">🛡️</div>
+      <h1>PhishGuard AI</h1>
+    </div>
+    
+    <div class="popup-status">
+      <div class="status-row">
+        <span class="status-label">Backend:</span>
+        <span id="backend-status" class="status-value">
+          <span class="status-dot status-dot-checking"></span>
+          Checking...
+        </span>
+      </div>
+      
+      <div class="status-row">
+        <span class="status-label">Current Tab:</span>
+        <span id="tab-status" class="status-value">No email open</span>
+      </div>
+    </div>
+    
+    <div id="last-result" class="last-result" style="display: none;">
+      <h3>Last Analysis</h3>
+      <div id="result-content"></div>
+    </div>
+    
+    <div class="popup-controls">
+      <label class="toggle-switch">
+        <input type="checkbox" id="enable-toggle" checked>
+        <span class="toggle-slider"></span>
+        <span class="toggle-label">Enable for this site</span>
+      </label>
+    </div>
+    
+    <div class="popup-footer">
+      <a href="#" id="settings-link">Settings</a>
+      <span class="version">v1.0.0</span>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
