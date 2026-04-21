@@ -22,10 +22,11 @@ class RedisClient:
     async def connect(self) -> None:
         """Establish Redis connection with connection pooling."""
         if self._client is None:
-            self._pool = redis.ConnectionPool.from_url(
+            self._pool = redis.BlockingConnectionPool.from_url(
                 settings.redis_url,
                 decode_responses=True,
-                max_connections=10
+                max_connections=50,
+                timeout=5
             )
             self._client = redis.Redis(connection_pool=self._pool)
             

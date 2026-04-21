@@ -1,0 +1,78 @@
+{
+  "total_urls": 400,
+  "valid_urls": 400,
+  "error_count": 0,
+  "phishing_count": 200,
+  "safe_count": 200,
+  "accuracy": 50.75,
+  "precision": 100.0,
+  "recall": 1.5,
+  "f1_score": 0.0296,
+  "roc_auc": 0.8096,
+  "true_positives": 3,
+  "false_negatives": 197,
+  "true_negatives": 200,
+  "false_positives": 0,
+  "latency_p50_ms": 568.2,
+  "latency_p95_ms": 942.5,
+  "latency_mean_ms": 655.3,
+  "verdict_distribution": {
+    "SAFE": 397,
+    "PHISHING": 3
+  },
+  "missed_phishing_sample": [
+    {
+      "url": "http://www.egmgrupo.com",
+      "url_score": 10,
+      "rep_score": 0
+    },
+    {
+      "url": "http://www.mysent.org",
+      "url_score": 10,
+      "rep_score": 0
+    },
+    {
+      "url": "http://www.letsencryp.at",
+      "url_score": 10,
+      "rep_score": 0
+    },
+    {
+      "url": "http://www.shenke.com.cn",
+      "url_score": 10,
+      "rep_score": 0
+    },
+    {
+      "url": "http://www.linuxsofta.com",
+      "url_score": 10,
+      "rep_score": 0
+    },
+    {
+      "url": "https://supportid100192347155.web.app/",
+      "url_score": 0,
+      "rep_score": 0
+    },
+    {
+      "url": "https://porezna-uprava-23b83.firebaseapp.com/",
+      "url_score": 0,
+      "rep_score": 0
+    },
+    {
+      "url": "http://www.apollocapitalp.com",
+      "url_score": 10,
+      "rep_score": 0
+    },
+    {
+      "url": "http://www.eblagh-fq.ml",
+      "url_score": 25,
+      "rep_score": 0
+    },
+    {
+      "url": "http://onlinequranteaching.com/public/0emgssu0okyesb3yjqgz6ga4heysevkl",
+      "url_score": 10,
+      "rep_score": 0
+    }
+  ],
+  "false_alarm_sample": [],
+  "evaluated_at": "2026-04-21T00:53:56.099552",
+  "elapsed_seconds": 52.6
+}

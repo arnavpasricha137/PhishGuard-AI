@@ -3,6 +3,7 @@ PhishGuard AI Backend - Main FastAPI Application.
 Multi-agent phishing detection system with Redis caching.
 """
 
+import asyncio
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -31,8 +32,16 @@ async def lifespan(app: FastAPI):
         print(f"✗ Redis connection failed: {e}")
         print("  Continuing without cache...")
     
-    # Load ML models (lazy loading on first use)
-    print("✓ ML models will load on first request")
+    # Pre-load ML model in a thread so it doesn't block the event loop on first request
+    try:
+        loop = asyncio.get_event_loop()
+        from ml.classifier import get_classifier
+        classifier = get_classifier()
+        await loop.run_in_executor(None, classifier.load_model)
+        status = "loaded" if classifier._loaded else "rule-based fallback"
+        print(f"✓ ML model: {status}")
+    except Exception as e:
+        print(f"✗ ML model preload failed: {e} — using rule-based fallback")
     
     print("=" * 60)
     print(f"🚀 Server ready on http://localhost:{settings.backend_port}")

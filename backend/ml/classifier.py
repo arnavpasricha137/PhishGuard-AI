@@ -20,26 +20,41 @@ class PhishingClassifier:
         self.model = None
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self._loaded = False
+        self._skip_ml = False  # Attempt to load ML model; falls back to rule-based on failure
     
     def load_model(self) -> None:
         """Load the pre-trained model and tokenizer."""
-        if self._loaded:
+        if self._loaded or self._skip_ml:
+            if self._skip_ml:
+                print("ℹ️  ML model disabled - using rule-based detection")
             return
-        
+
         print(f"Loading model: {self.model_name}")
+        import os
+        os.environ['HF_HUB_OFFLINE'] = '1'
         try:
-            self.tokenizer = AutoTokenizer.from_pretrained(self.model_name)
+            # Load purely from local cache — raises OSError if not cached
+            self.tokenizer = AutoTokenizer.from_pretrained(
+                self.model_name,
+                local_files_only=True
+            )
             self.model = AutoModelForSequenceClassification.from_pretrained(
-                self.model_name
+                self.model_name,
+                local_files_only=True
             )
             self.model.to(self.device)
             self.model.eval()
             self._loaded = True
             print(f"✓ Model loaded on {self.device}")
+        except OSError:
+            print("ℹ️  ML model not in local cache - using rule-based detection")
+            print("    Run `python download_model.py` when internet is available")
+            self._skip_ml = True
         except Exception as e:
             print(f"✗ Model loading failed: {e}")
             print("  Falling back to rule-based detection")
             self._loaded = False
+            self._skip_ml = True  # Prevent retrying on every request
     
     @staticmethod
     def clean_text(text: str) -> str:

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PhishGuard URL Detection Report</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 0; background: #0f172a; color: #e2e8f0; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 2rem; }
+  h1 { color: #38bdf8; } h2 { color: #94a3b8; border-bottom: 1px solid #334155; padding-bottom:.5rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .card { background: #1e293b; border-radius: 8px; padding: 1.2rem; text-align: center; }
+  .card .val { font-size: 2rem; font-weight: 700; }
+  .card .lbl { font-size: .8rem; color: #64748b; margin-top:.3rem; }
+  table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+  th { background: #1e293b; padding: .5rem .75rem; text-align:left; }
+  td { padding: .4rem .75rem; border-bottom: 1px solid #1e293b; }
+  tr:hover td { background: #1e293b44; }
+  .tag { display:inline-block; padding:.2rem .6rem; border-radius:9999px; font-size:.75rem; font-weight:600; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🛡️ PhishGuard — URL Detection Evaluation</h1>
+  <p style="color:#64748b">Generated: 2026-04-21 00:53 &nbsp;|&nbsp;
+     Dataset: PhiUSIIL &nbsp;|&nbsp; 400 URLs evaluated</p>
+
+  <h2>Performance Summary</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="val" style="color:#ef4444">50.75%</div>
+      <div class="lbl">Accuracy</div>
+    </div>
+    <div class="card">
+      <div class="val" style="color:#22c55e">100.0%</div>
+      <div class="lbl">Precision</div>
+    </div>
+    <div class="card">
+      <div class="val" style="color:#ef4444">1.5%</div>
+      <div class="lbl">Recall</div>
+    </div>
+    <div class="card">
+      <div class="val" style="color:#22c55e">0.0296</div>
+      <div class="lbl">F1 Score</div>
+    </div>
+    <div class="card">
+      <div class="val" style="color:#38bdf8">0.8096</div>
+      <div class="lbl">ROC-AUC</div>
+    </div>
+  </div>
+
+  <h2>Confusion Matrix</h2>
+  <div class="grid" style="grid-template-columns:repeat(2,1fr);max-width:400px">
+    <div class="card">
+      <div class="val" style="color:#22c55e">3</div>
+      <div class="lbl">True Positives<br>(caught phishing)</div>
+    </div>
+    <div class="card">
+      <div class="val" style="color:#ef4444">197</div>
+      <div class="lbl">False Negatives<br>(missed phishing ⚠️)</div>
+    </div>
+    <div class="card">
+      <div class="val" style="color:#f59e0b">0</div>
+      <div class="lbl">False Positives<br>(false alarms)</div>
+    </div>
+    <div class="card">
+      <div class="val" style="color:#22c55e">200</div>
+      <div class="lbl">True Negatives<br>(correct safe)</div>
+    </div>
+  </div>
+
+  <h2>Latency</h2>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr);max-width:480px">
+    <div class="card"><div class="val">568.2ms</div><div class="lbl">p50</div></div>
+    <div class="card"><div class="val">942.5ms</div><div class="lbl">p95</div></div>
+    <div class="card"><div class="val">655.3ms</div><div class="lbl">mean</div></div>
+  </div>
+
+  <h2>Missed Phishing URLs (False Negatives)</h2>
+  <table>
+    <tr><th>URL</th><th>URL Score</th><th>Rep Score</th></tr>
+    <tr><td style='word-break:break-all;max-width:400px'>http://www.egmgrupo.com</td><td>10</td><td>0</td></tr><tr><td style='word-break:break-all;max-width:400px'>http://www.mysent.org</td><td>10</td><td>0</td></tr><tr><td style='word-break:break-all;max-width:400px'>http://www.letsencryp.at</td><td>10</td><td>0</td></tr><tr><td style='word-break:break-all;max-width:400px'>http://www.shenke.com.cn</td><td>10</td><td>0</td></tr><tr><td style='word-break:break-all;max-width:400px'>http://www.linuxsofta.com</td><td>10</td><td>0</td></tr><tr><td style='word-break:break-all;max-width:400px'>https://supportid100192347155.web.app/</td><td>0</td><td>0</td></tr><tr><td style='word-break:break-all;max-width:400px'>https://porezna-uprava-23b83.firebaseapp.com/</td><td>0</td><td>0</td></tr><tr><td style='word-break:break-all;max-width:400px'>http://www.apollocapitalp.com</td><td>10</td><td>0</td></tr><tr><td style='word-break:break-all;max-width:400px'>http://www.eblagh-fq.ml</td><td>25</td><td>0</td></tr><tr><td style='word-break:break-all;max-width:400px'>http://onlinequranteaching.com/public/0emgssu0okyesb3yjqgz6ga4heysevkl</td><td>10</td><td>0</td></tr>
+  </table>
+
+  <h2>False Alarm URLs (Safe → Flagged)</h2>
+  <table>
+    <tr><th>URL</th><th>URL Score</th></tr>
+    <tr><td colspan="2" style="color:#22c55e">None!</td></tr>
+  </table>
+</div>
+</body>
+</html>

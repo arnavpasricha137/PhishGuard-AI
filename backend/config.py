@@ -6,7 +6,7 @@ Loads and validates environment variables with sensible defaults.
 import os
 from typing import List
 from pydantic_settings import BaseSettings
-from pydantic import Field, validator
+from pydantic import Field, field_validator
 
 
 class Settings(BaseSettings):
@@ -27,8 +27,8 @@ class Settings(BaseSettings):
         description="Port for FastAPI server"
     )
     
-    cors_origins: str = Field(
-        default="chrome-extension://*,http://localhost:3000",
+    cors_origins: List[str] = Field(
+        default=["chrome-extension://*", "http://localhost:3000"],
         description="Comma-separated list of allowed CORS origins"
     )
     
@@ -72,15 +72,19 @@ class Settings(BaseSettings):
         description="Timeout for external API calls in seconds"
     )
     
-    @validator("cors_origins")
-    def parse_cors_origins(cls, v: str) -> List[str]:
+    @field_validator("cors_origins", mode="before")
+    @classmethod
+    def parse_cors_origins(cls, v):
         """Parse comma-separated CORS origins into a list."""
-        return [origin.strip() for origin in v.split(",") if origin.strip()]
+        if isinstance(v, str):
+            return [origin.strip() for origin in v.split(",") if origin.strip()]
+        return v
     
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
-        case_sensitive = False
+    model_config = {
+        "env_file": ".env",
+        "env_file_encoding": "utf-8",
+        "case_sensitive": False,
+    }
 
 
 def get_settings() -> Settings:

@@ -1,0 +1,721 @@
+{
+  "timestamp": "2026-04-21T00:14:30.740954",
+  "summary": {
+    "total_emails_evaluated": 600,
+    "consensus_accuracy": 0.9116666666666666,
+    "phishing_precision": 0.9329446064139941,
+    "phishing_recall": 0.9142857142857143,
+    "phishing_f1": 0.9235209235209235
+  },
+  "consensus_metrics": {
+    "total_predictions": 600,
+    "accuracy": 0.9116666666666666,
+    "precision_phishing": 0.9329446064139941,
+    "recall_phishing": 0.9142857142857143,
+    "f1_phishing": 0.9235209235209235,
+    "roc_auc": 0.9117371428571429,
+    "confusion_matrix": [
+      [
+        227,
+        0,
+        23
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        30,
+        0,
+        320
+      ]
+    ]
+  },
+  "agent_metrics": {
+    "content_agent": {
+      "accuracy": 0.9116666666666666,
+      "precision": 0.9329446064139941,
+      "recall": 0.9142857142857143,
+      "f1": 0.9235209235209235
+    },
+    "header_agent": {
+      "accuracy": 0.4166666666666667,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "reputation_agent": {
+      "accuracy": 0.4166666666666667,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    },
+    "url_agent": {
+      "accuracy": 0.4166666666666667,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    }
+  },
+  "efficiency_metrics": {
+    "total_requests": 600,
+    "successful_requests": 600,
+    "error_rate": 0.0,
+    "latency_p50_ms": 3633.982539176941,
+    "latency_p95_ms": 10429.800033569336,
+    "latency_p99_ms": 16936.45477294922,
+    "latency_mean_ms": 4404.085346062978,
+    "cache_hit_rate": 0.0,
+    "throughput_emails_per_min": 13.623714184748229
+  },
+  "failure_analysis": {
+    "false_positives": [
+      {
+        "email_id": "email_0006",
+        "ground_truth": "SAFE",
+        "verdict": "PHISHING",
+        "score": 75,
+        "confidence": 0.75,
+        "agent_scores": {
+          "url_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "url_agent"
+          },
+          "content_agent": {
+            "score": 99,
+            "reason": "",
+            "agent_name": "content_agent"
+          },
+          "header_agent": {
+            "score": 20,
+            "reason": "",
+            "agent_name": "header_agent"
+          },
+          "reputation_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "reputation_agent"
+          }
+        },
+        "latency_ms": 11639.582872390747,
+        "cache_hit": false,
+        "error": null
+      },
+      {
+        "email_id": "email_0020",
+        "ground_truth": "SAFE",
+        "verdict": "PHISHING",
+        "score": 75,
+        "confidence": 0.75,
+        "agent_scores": {
+          "url_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "url_agent"
+          },
+          "content_agent": {
+            "score": 100,
+            "reason": "",
+            "agent_name": "content_agent"
+          },
+          "header_agent": {
+            "score": 20,
+            "reason": "",
+            "agent_name": "header_agent"
+          },
+          "reputation_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "reputation_agent"
+          }
+        },
+        "latency_ms": 5982.062816619873,
+        "cache_hit": false,
+        "error": null
+      },
+      {
+        "email_id": "email_0023",
+        "ground_truth": "SAFE",
+        "verdict": "PHISHING",
+        "score": 75,
+        "confidence": 0.75,
+        "agent_scores": {
+          "url_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "url_agent"
+          },
+          "content_agent": {
+            "score": 99,
+            "reason": "",
+            "agent_name": "content_agent"
+          },
+          "header_agent": {
+            "score": 20,
+            "reason": "",
+            "agent_name": "header_agent"
+          },
+          "reputation_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "reputation_agent"
+          }
+        },
+        "latency_ms": 2847.454071044922,
+        "cache_hit": false,
+        "error": null
+      },
+      {
+        "email_id": "email_0057",
+        "ground_truth": "SAFE",
+        "verdict": "PHISHING",
+        "score": 75,
+        "confidence": 0.75,
+        "agent_scores": {
+          "url_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "url_agent"
+          },
+          "content_agent": {
+            "score": 93,
+            "reason": "",
+            "agent_name": "content_agent"
+          },
+          "header_agent": {
+            "score": 20,
+            "reason": "",
+            "agent_name": "header_agent"
+          },
+          "reputation_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "reputation_agent"
+          }
+        },
+        "latency_ms": 3857.7311038970947,
+        "cache_hit": false,
+        "error": null
+      },
+      {
+        "email_id": "email_0093",
+        "ground_truth": "SAFE",
+        "verdict": "PHISHING",
+        "score": 75,
+        "confidence": 0.75,
+        "agent_scores": {
+          "url_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "url_agent"
+          },
+          "content_agent": {
+            "score": 100,
+            "reason": "",
+            "agent_name": "content_agent"
+          },
+          "header_agent": {
+            "score": 20,
+            "reason": "",
+            "agent_name": "header_agent"
+          },
+          "reputation_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "reputation_agent"
+          }
+        },
+        "latency_ms": 3544.867992401123,
+        "cache_hit": false,
+        "error": null
+      },
+      {
+        "email_id": "email_0097",
+        "ground_truth": "SAFE",
+        "verdict": "PHISHING",
+        "score": 75,
+        "confidence": 0.75,
+        "agent_scores": {
+          "url_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "url_agent"
+          },
+          "content_agent": {
+            "score": 99,
+            "reason": "",
+            "agent_name": "content_agent"
+          },
+          "header_agent": {
+            "score": 20,
+            "reason": "",
+            "agent_name": "header_agent"
+          },
+          "reputation_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "reputation_agent"
+          }
+        },
+        "latency_ms": 3736.53507232666,
+        "cache_hit": false,
+        "error": null
+      },
+      {
+        "email_id": "email_0120",
+        "ground_truth": "SAFE",
+        "verdict": "PHISHING",
+        "score": 75,
+        "confidence": 0.75,
+        "agent_scores": {
+          "url_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "url_agent"
+          },
+          "content_agent": {
+            "score": 99,
+            "reason": "",
+            "agent_name": "content_agent"
+          },
+          "header_agent": {
+            "score": 20,
+            "reason": "",
+            "agent_name": "header_agent"
+          },
+          "reputation_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "reputation_agent"
+          }
+        },
+        "latency_ms": 2957.535982131958,
+        "cache_hit": false,
+        "error": null
+      },
+      {
+        "email_id": "email_0123",
+        "ground_truth": "SAFE",
+        "verdict": "PHISHING",
+        "score": 75,
+        "confidence": 0.75,
+        "agent_scores": {
+          "url_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "url_agent"
+          },
+          "content_agent": {
+            "score": 99,
+            "reason": "",
+            "agent_name": "content_agent"
+          },
+          "header_agent": {
+            "score": 20,
+            "reason": "",
+            "agent_name": "header_agent"
+          },
+          "reputation_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "reputation_agent"
+          }
+        },
+        "latency_ms": 2948.3819007873535,
+        "cache_hit": false,
+        "error": null
+      },
+      {
+        "email_id": "email_0131",
+        "ground_truth": "SAFE",
+        "verdict": "PHISHING",
+        "score": 75,
+        "confidence": 0.75,
+        "agent_scores": {
+          "url_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "url_agent"
+          },
+          "content_agent": {
+            "score": 96,
+            "reason": "",
+            "agent_name": "content_agent"
+          },
+          "header_agent": {
+            "score": 20,
+            "reason": "",
+            "agent_name": "header_agent"
+          },
+          "reputation_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "reputation_agent"
+          }
+        },
+        "latency_ms": 3037.0941162109375,
+        "cache_hit": false,
+        "error": null
+      },
+      {
+        "email_id": "email_0239",
+        "ground_truth": "SAFE",
+        "verdict": "PHISHING",
+        "score": 75,
+        "confidence": 0.75,
+        "agent_scores": {
+          "url_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "url_agent"
+          },
+          "content_agent": {
+            "score": 99,
+            "reason": "",
+            "agent_name": "content_agent"
+          },
+          "header_agent": {
+            "score": 20,
+            "reason": "",
+            "agent_name": "header_agent"
+          },
+          "reputation_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "reputation_agent"
+          }
+        },
+        "latency_ms": 4083.2159519195557,
+        "cache_hit": false,
+        "error": null
+      }
+    ],
+    "false_negatives": [
+      {
+        "email_id": "email_0030",
+        "ground_truth": "PHISHING",
+        "verdict": "SAFE",
+        "score": 10,
+        "confidence": 0.1,
+        "agent_scores": {
+          "url_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "url_agent"
+          },
+          "content_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "content_agent"
+          },
+          "header_agent": {
+            "score": 20,
+            "reason": "",
+            "agent_name": "header_agent"
+          },
+          "reputation_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "reputation_agent"
+          }
+        },
+        "latency_ms": 10270.878314971924,
+        "cache_hit": false,
+        "error": null
+      },
+      {
+        "email_id": "email_0039",
+        "ground_truth": "PHISHING",
+        "verdict": "SAFE",
+        "score": 10,
+        "confidence": 0.1,
+        "agent_scores": {
+          "url_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "url_agent"
+          },
+          "content_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "content_agent"
+          },
+          "header_agent": {
+            "score": 20,
+            "reason": "",
+            "agent_name": "header_agent"
+          },
+          "reputation_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "reputation_agent"
+          }
+        },
+        "latency_ms": 5838.587760925293,
+        "cache_hit": false,
+        "error": null
+      },
+      {
+        "email_id": "email_0048",
+        "ground_truth": "PHISHING",
+        "verdict": "SAFE",
+        "score": 10,
+        "confidence": 0.1,
+        "agent_scores": {
+          "url_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "url_agent"
+          },
+          "content_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "content_agent"
+          },
+          "header_agent": {
+            "score": 20,
+            "reason": "",
+            "agent_name": "header_agent"
+          },
+          "reputation_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "reputation_agent"
+          }
+        },
+        "latency_ms": 1734.3769073486328,
+        "cache_hit": false,
+        "error": null
+      },
+      {
+        "email_id": "email_0052",
+        "ground_truth": "PHISHING",
+        "verdict": "SAFE",
+        "score": 10,
+        "confidence": 0.1,
+        "agent_scores": {
+          "url_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "url_agent"
+          },
+          "content_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "content_agent"
+          },
+          "header_agent": {
+            "score": 20,
+            "reason": "",
+            "agent_name": "header_agent"
+          },
+          "reputation_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "reputation_agent"
+          }
+        },
+        "latency_ms": 2349.5848178863525,
+        "cache_hit": false,
+        "error": null
+      },
+      {
+        "email_id": "email_0074",
+        "ground_truth": "PHISHING",
+        "verdict": "SAFE",
+        "score": 11,
+        "confidence": 0.11,
+        "agent_scores": {
+          "url_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "url_agent"
+          },
+          "content_agent": {
+            "score": 6,
+            "reason": "",
+            "agent_name": "content_agent"
+          },
+          "header_agent": {
+            "score": 20,
+            "reason": "",
+            "agent_name": "header_agent"
+          },
+          "reputation_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "reputation_agent"
+          }
+        },
+        "latency_ms": 2630.725145339966,
+        "cache_hit": false,
+        "error": null
+      },
+      {
+        "email_id": "email_0085",
+        "ground_truth": "PHISHING",
+        "verdict": "SAFE",
+        "score": 10,
+        "confidence": 0.1,
+        "agent_scores": {
+          "url_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "url_agent"
+          },
+          "content_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "content_agent"
+          },
+          "header_agent": {
+            "score": 20,
+            "reason": "",
+            "agent_name": "header_agent"
+          },
+          "reputation_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "reputation_agent"
+          }
+        },
+        "latency_ms": 1666.917085647583,
+        "cache_hit": false,
+        "error": null
+      },
+      {
+        "email_id": "email_0088",
+        "ground_truth": "PHISHING",
+        "verdict": "SAFE",
+        "score": 10,
+        "confidence": 0.1,
+        "agent_scores": {
+          "url_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "url_agent"
+          },
+          "content_agent": {
+            "score": 2,
+            "reason": "",
+            "agent_name": "content_agent"
+          },
+          "header_agent": {
+            "score": 20,
+            "reason": "",
+            "agent_name": "header_agent"
+          },
+          "reputation_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "reputation_agent"
+          }
+        },
+        "latency_ms": 4784.60431098938,
+        "cache_hit": false,
+        "error": null
+      },
+      {
+        "email_id": "email_0118",
+        "ground_truth": "PHISHING",
+        "verdict": "SAFE",
+        "score": 10,
+        "confidence": 0.1,
+        "agent_scores": {
+          "url_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "url_agent"
+          },
+          "content_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "content_agent"
+          },
+          "header_agent": {
+            "score": 20,
+            "reason": "",
+            "agent_name": "header_agent"
+          },
+          "reputation_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "reputation_agent"
+          }
+        },
+        "latency_ms": 3048.105001449585,
+        "cache_hit": false,
+        "error": null
+      },
+      {
+        "email_id": "email_0135",
+        "ground_truth": "PHISHING",
+        "verdict": "SAFE",
+        "score": 10,
+        "confidence": 0.1,
+        "agent_scores": {
+          "url_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "url_agent"
+          },
+          "content_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "content_agent"
+          },
+          "header_agent": {
+            "score": 20,
+            "reason": "",
+            "agent_name": "header_agent"
+          },
+          "reputation_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "reputation_agent"
+          }
+        },
+        "latency_ms": 1682.5549602508545,
+        "cache_hit": false,
+        "error": null
+      },
+      {
+        "email_id": "email_0146",
+        "ground_truth": "PHISHING",
+        "verdict": "SAFE",
+        "score": 10,
+        "confidence": 0.1,
+        "agent_scores": {
+          "url_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "url_agent"
+          },
+          "content_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "content_agent"
+          },
+          "header_agent": {
+            "score": 20,
+            "reason": "",
+            "agent_name": "header_agent"
+          },
+          "reputation_agent": {
+            "score": 0,
+            "reason": "",
+            "agent_name": "reputation_agent"
+          }
+        },
+        "latency_ms": 3246.3219165802,
+        "cache_hit": false,
+        "error": null
+      }
+    ],
+    "fp_count": 23,
+    "fn_count": 30
+  },
+  "recommendation": "\u26a0\ufe0f REVIEW NEEDED:\n  \u2022 Accuracy too low: 91.2% (target \u2265 92%)\n  \u2022 Precision too low: 93.3% (target \u2265 95%)\n  \u2022 P95 latency too high: 10430ms (target < 2000ms)"
+}

@@ -31,9 +31,12 @@ class ReputationAgent:
         is_suspicious = False
         
         try:
-            # Run WHOIS in thread pool to avoid blocking
+            # Run WHOIS in thread pool to avoid blocking, with a hard timeout
             loop = asyncio.get_event_loop()
-            domain_info = await loop.run_in_executor(None, whois.whois, domain)
+            domain_info = await asyncio.wait_for(
+                loop.run_in_executor(None, whois.whois, domain),
+                timeout=3.0
+            )
             
             if domain_info and domain_info.creation_date:
                 # Handle both single date and list of dates
@@ -98,29 +101,37 @@ class ReputationAgent:
         if sender and "@" in sender:
             sender_domain = sender.split("@")[1]
         
-        # Check sender domain age
+        # Run domain age check and URL reputation checks in parallel
+        tasks = []
         if sender_domain:
-            domain_suspicious, domain_signals = await self._check_domain_age(sender_domain)
-            if domain_suspicious:
-                score += 20
-            signals.extend(domain_signals)
-        
-        # Check all URLs against threat feeds
+            tasks.append(self._check_domain_age(sender_domain))
+        url_tasks_start = len(tasks)
         if urls:
-            # Check URLs in parallel
-            url_tasks = [self._check_url_reputation(url) for url in urls[:5]]  # Limit to 5 URLs
-            url_results = await asyncio.gather(*url_tasks, return_exceptions=True)
-            
-            max_url_score = 0
-            for result in url_results:
-                if isinstance(result, Exception):
-                    continue
-                
-                url_score, url_signals = result
-                max_url_score = max(max_url_score, url_score)
-                signals.extend(url_signals)
-            
-            score += max_url_score
+            tasks.extend([self._check_url_reputation(url) for url in urls[:5]])
+
+        if tasks:
+            results = await asyncio.gather(*tasks, return_exceptions=True)
+        else:
+            results = []
+
+        # Process domain age result
+        if sender_domain and results:
+            domain_result = results[0]
+            if not isinstance(domain_result, Exception):
+                domain_suspicious, domain_signals = domain_result
+                if domain_suspicious:
+                    score += 20
+                signals.extend(domain_signals)
+
+        # Process URL reputation results
+        max_url_score = 0
+        for result in results[url_tasks_start:]:
+            if isinstance(result, Exception):
+                continue
+            url_score, url_signals = result
+            max_url_score = max(max_url_score, url_score)
+            signals.extend(url_signals)
+        score += max_url_score
         
         # Normalize score
         score = min(score, 100)

@@ -1,0 +1,220 @@
+{
+  "emails": [
+    {
+      "id": "email_001",
+      "ground_truth": "PHISHING",
+      "email": {
+        "sender": "support@paypa1-verify.com",
+        "subject": "Urgent: Verify your PayPal account immediately",
+        "body": "Dear Customer,\n\nYour PayPal account has been flagged for suspicious activity. Please verify your account by clicking the link below to avoid account suspension.\n\nClick here to verify: http://paypa1-verify.com/verify?session=abc123\n\nThis is urgent - your account will be locked in 24 hours if not verified.",
+        "urls": ["http://paypa1-verify.com/verify?session=abc123"],
+        "headers": {
+          "from": "support@paypa1-verify.com",
+          "reply_to": "attacker@evil.com",
+          "return_path": "bounce@evil.com",
+          "spf": "FAIL",
+          "dkim": "FAIL",
+          "dmarc": "FAIL"
+        }
+      }
+    },
+    {
+      "id": "email_002",
+      "ground_truth": "SAFE",
+      "email": {
+        "sender": "billing@amazon.com",
+        "subject": "Your Amazon order #123-4567890 has shipped",
+        "body": "Your order has been shipped!\n\nTrack your package at: https://amazon.com/orders/123-4567890\n\nExpected delivery: 2025-04-25\n\nThank you for your purchase!",
+        "urls": ["https://amazon.com/orders/123-4567890"],
+        "headers": {
+          "from": "billing@amazon.com",
+          "reply_to": "customer-service@amazon.com",
+          "return_path": "bounce.amazon.com",
+          "spf": "PASS",
+          "dkim": "PASS",
+          "dmarc": "PASS"
+        }
+      }
+    },
+    {
+      "id": "email_003",
+      "ground_truth": "PHISHING",
+      "email": {
+        "sender": "admin@apple-support.net",
+        "subject": "Action Required: Update your Apple ID security",
+        "body": "Apple Security Alert\n\nWe noticed unusual sign-in activity on your Apple ID. To protect your account, please verify your identity by confirming your password.\n\nClick to confirm: http://apple-support.net/verify\n\nApple Support Team",
+        "urls": ["http://apple-support.net/verify"],
+        "headers": {
+          "from": "admin@apple-support.net",
+          "reply_to": "noreply@apple-support.net",
+          "return_path": "admin@apple-support.net",
+          "spf": "FAIL",
+          "dkim": "FAIL",
+          "dmarc": "FAIL"
+        }
+      }
+    },
+    {
+      "id": "email_004",
+      "ground_truth": "SAFE",
+      "email": {
+        "sender": "noreply@github.com",
+        "subject": "New sign-in from Chrome on Windows",
+        "body": "Hi user@example.com,\n\nSomeone just signed in to your GitHub account from:\nBrowser: Chrome\nOperating System: Windows\nIP Address: 203.0.113.42\n\nIf this wasn't you, please review your account security settings: https://github.com/settings/security\n\nGitHub",
+        "urls": ["https://github.com/settings/security"],
+        "headers": {
+          "from": "noreply@github.com",
+          "reply_to": "noreply@github.com",
+          "return_path": "noreply@github.com",
+          "spf": "PASS",
+          "dkim": "PASS",
+          "dmarc": "PASS"
+        }
+      }
+    },
+    {
+      "id": "email_005",
+      "ground_truth": "PHISHING",
+      "email": {
+        "sender": "security@microsoft-account.com",
+        "subject": "Confirm your Microsoft account - Important",
+        "body": "We have detected unusual activity on your Microsoft account. Please confirm your identity within the next 24 hours to restore full access.\n\nConfirm Identity: http://microsoft-account.com/verify/aUd9xZ\n\nFailure to confirm may result in account suspension.\n\nMicrosoft Account Team",
+        "urls": ["http://microsoft-account.com/verify/aUd9xZ"],
+        "headers": {
+          "from": "security@microsoft-account.com",
+          "reply_to": "no-reply@microsoft-account.com",
+          "return_path": "no-reply@microsoft-account.com",
+          "spf": "FAIL",
+          "dkim": "FAIL",
+          "dmarc": "FAIL"
+        }
+      }
+    },
+    {
+      "id": "email_006",
+      "ground_truth": "SAFE",
+      "email": {
+        "sender": "no-reply@stripe.com",
+        "subject": "Payment received for order #prod_12345",
+        "body": "Payment Received\n\nYour Stripe account has received a payment.\n\nAmount: $99.99\nDate: 2025-04-20\nOrder: prod_12345\n\nView transaction details: https://dashboard.stripe.com/payments/pi_123\n\nStripe Payments",
+        "urls": ["https://dashboard.stripe.com/payments/pi_123"],
+        "headers": {
+          "from": "no-reply@stripe.com",
+          "reply_to": "support@stripe.com",
+          "return_path": "bounce.stripe.com",
+          "spf": "PASS",
+          "dkim": "PASS",
+          "dmarc": "PASS"
+        }
+      }
+    },
+    {
+      "id": "email_007",
+      "ground_truth": "SUSPICIOUS",
+      "email": {
+        "sender": "support@wellsfargo-alerts.com",
+        "subject": "Unusual Account Activity Detected",
+        "body": "Dear Account Holder,\n\nWe have detected an unusual transaction on your Wells Fargo account. Please review and confirm this activity.\n\nClick here to review: http://wellsfargo-alerts.com/review\n\nWells Fargo Security",
+        "urls": ["http://wellsfargo-alerts.com/review"],
+        "headers": {
+          "from": "support@wellsfargo-alerts.com",
+          "reply_to": "support@wellsfargo-alerts.com",
+          "return_path": "noreply@wellsfargo-alerts.com",
+          "spf": "FAIL",
+          "dkim": "FAIL",
+          "dmarc": "FAIL"
+        }
+      }
+    },
+    {
+      "id": "email_008",
+      "ground_truth": "SAFE",
+      "email": {
+        "sender": "notifications@linkedin.com",
+        "subject": "You have a new job opportunity",
+        "body": "Hi User,\n\nA recruiter has viewed your profile and would like to connect. View the opportunity: https://linkedin.com/jobs/view/12345\n\nLinkedIn Recruiter",
+        "urls": ["https://linkedin.com/jobs/view/12345"],
+        "headers": {
+          "from": "notifications@linkedin.com",
+          "reply_to": "noreply@linkedin.com",
+          "return_path": "bounce.linkedin.com",
+          "spf": "PASS",
+          "dkim": "PASS",
+          "dmarc": "PASS"
+        }
+      }
+    },
+    {
+      "id": "email_009",
+      "ground_truth": "PHISHING",
+      "email": {
+        "sender": "verify@google-security.info",
+        "subject": "Google Account Security Alert",
+        "body": "Your Google Account has been flagged for unusual activity. Please verify your account details to keep it secure.\n\nVerify Account: http://google-security.info/verify?account=user@gmail.com\n\nGoogle Security Team",
+        "urls": ["http://google-security.info/verify?account=user@gmail.com"],
+        "headers": {
+          "from": "verify@google-security.info",
+          "reply_to": "security@google-security.info",
+          "return_path": "noreply@google-security.info",
+          "spf": "FAIL",
+          "dkim": "FAIL",
+          "dmarc": "FAIL"
+        }
+      }
+    },
+    {
+      "id": "email_010",
+      "ground_truth": "SAFE",
+      "email": {
+        "sender": "alerts@slack.com",
+        "subject": "Slack workspace security report",
+        "body": "Weekly Security Report for your Slack workspace.\n\nActive users: 42\nNew sign-ins: 3\nSuspicious activity: None\n\nView full report: https://app.slack.com/admin/security\n\nSlack Security",
+        "urls": ["https://app.slack.com/admin/security"],
+        "headers": {
+          "from": "alerts@slack.com",
+          "reply_to": "noreply@slack.com",
+          "return_path": "bounce.slack.com",
+          "spf": "PASS",
+          "dkim": "PASS",
+          "dmarc": "PASS"
+        }
+      }
+    },
+    {
+      "id": "email_011",
+      "ground_truth": "PHISHING",
+      "email": {
+        "sender": "support@bankofamerica-secure.com",
+        "subject": "Bank of America - Immediate Action Required",
+        "body": "Dear Customer,\n\nYour Bank of America account has been temporarily limited due to suspicious activity. To restore full access, please verify your information within 24 hours.\n\nClick here: http://bankofamerica-secure.com/verify\n\nBank of America",
+        "urls": ["http://bankofamerica-secure.com/verify"],
+        "headers": {
+          "from": "support@bankofamerica-secure.com",
+          "reply_to": "noreply@bankofamerica-secure.com",
+          "return_path": "bounce@bankofamerica-secure.com",
+          "spf": "FAIL",
+          "dkim": "FAIL",
+          "dmarc": "FAIL"
+        }
+      }
+    },
+    {
+      "id": "email_012",
+      "ground_truth": "SAFE",
+      "email": {
+        "sender": "support@dropbox.com",
+        "subject": "Your Dropbox file is ready",
+        "body": "Your file conversion is complete. Access your file: https://www.dropbox.com/files/12345\n\nDropbox Support",
+        "urls": ["https://www.dropbox.com/files/12345"],
+        "headers": {
+          "from": "support@dropbox.com",
+          "reply_to": "noreply@dropbox.com",
+          "return_path": "bounce.dropbox.com",
+          "spf": "PASS",
+          "dkim": "PASS",
+          "dmarc": "PASS"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "total_urls": 5000,
+  "valid_urls": 5000,
+  "error_count": 0,
+  "phishing_count": 2500,
+  "safe_count": 2500,
+  "accuracy": 50.7,
+  "precision": 100.0,
+  "recall": 1.4,
+  "f1_score": 0.0276,
+  "roc_auc": 0.8205,
+  "true_positives": 35,
+  "false_negatives": 2465,
+  "true_negatives": 2500,
+  "false_positives": 0,
+  "latency_p50_ms": 569.6,
+  "latency_p95_ms": 693.1,
+  "latency_mean_ms": 592.0,
+  "verdict_distribution": {
+    "SAFE": 4965,
+    "PHISHING": 32,
+    "SUSPICIOUS": 3
+  },
+  "missed_phishing_sample": [
+    {
+      "url": "http://www.cyptian.com",
+      "url_score": 10,
+      "rep_score": 0
+    },
+    {
+      "url": "http://www.dev8272.d3d6vjj0t2whej.amplifyapp.com",
+      "url_score": 20,
+      "rep_score": 0
+    },
+    {
+      "url": "http://www.unboxingtoycon.mx",
+      "url_score": 10,
+      "rep_score": 0
+    },
+    {
+      "url": "http://www.dynuddns.com",
+      "url_score": 10,
+      "rep_score": 0
+    },
+    {
+      "url": "https://aruba.auth-sys-2fa-applink.com/",
+      "url_score": 10,
+      "rep_score": 0
+    },
+    {
+      "url": "http://www.f0516881.xsph.ru",
+      "url_score": 10,
+      "rep_score": 0
+    },
+    {
+      "url": "http://ldlfzdqoyu.duckdns.org",
+      "url_score": 10,
+      "rep_score": 0
+    },
+    {
+      "url": "http://www.cttm.fbcode.co",
+      "url_score": 10,
+      "rep_score": 0
+    },
+    {
+      "url": "http://www.all.co.uk",
+      "url_score": 10,
+      "rep_score": 0
+    },
+    {
+      "url": "https://broken-firefly-4a20.lecaw118715270.workers.dev/",
+      "url_score": 0,
+      "rep_score": 0
+    }
+  ],
+  "false_alarm_sample": [],
+  "evaluated_at": "2026-04-21T01:02:25.599295",
+  "elapsed_seconds": 296.4
+}
